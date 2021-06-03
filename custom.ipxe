@@ -20,14 +20,14 @@ goto custom_exit
 
 :ubuntu
 set base-url http://ca.archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/
-kernel ${base-url}/linux console=ttyS0,115200n8 initrd=ubuntu-installer/amd64/initrd.gz
+kernel ${base-url}/linux console=ttyS0,115200n8 initrd=initrd.gz
 initrd ${base-url}/initrd.gz
 boot || goto custom_exit
 
 :option_one
 kernel http://mirror.csclub.uwaterloo.ca/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/linux
 initrd http://mirror.csclub.uwaterloo.ca/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/initrd.gz
-imgargs linux  -- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+imgargs linux console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot || goto custom_exit
 
 :option_two
