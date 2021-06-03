@@ -7,6 +7,7 @@
 clear custom_choice
 menu This is a Test Menu
 item --gap This is the first sub menu
+item ubuntu ${space} Ubuntu focal
 item option_one ${space} Loading a kernel and initrd
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
@@ -16,6 +17,12 @@ choose custom_choice || goto custom_exit
 echo ${cls}
 goto ${custom_choice}
 goto custom_exit
+
+:ubuntu
+set base-url http://ca.archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/
+kernel ${base-url}/linux console=ttyS0,115200n8
+initrd ${base-url}/initrd.gz
+boot || goto custom_exit
 
 :option_one
 kernel http://mirror.csclub.uwaterloo.ca/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/linux
