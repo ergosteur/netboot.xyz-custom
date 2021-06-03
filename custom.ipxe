@@ -8,6 +8,7 @@ clear custom_choice
 menu This is a Test Menu
 item --gap This is the first sub menu
 item ubuntu ${space} Ubuntu focal
+item ubuntu ${space} Ubuntu focal VGA
 item option_one ${space} Loading a kernel and initrd
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
@@ -21,6 +22,12 @@ goto custom_exit
 :ubuntu
 set base-url http://ca.archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/
 kernel ${base-url}/linux console=ttyS0,115200n8 initrd=initrd.gz
+initrd ${base-url}/initrd.gz
+boot || goto custom_exit
+
+:ubuntu_vga
+set base-url http://ca.archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/
+kernel ${base-url}/linux
 initrd ${base-url}/initrd.gz
 boot || goto custom_exit
 
